@@ -1,0 +1,13 @@
+{
+    "editor.fontFamily": "JetBrains Mono, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontLigatures": true,
+    "editor.fontWeight": "300",
+    "gopls": {
+        "ui.semanticTokens": true
+    },
+    "[makefile]": {
+        "editor.insertSpaces": false,
+        "editor.tabSize": 2,
+        "editor.formatOnSave": true
+    }
+}
