@@ -7,6 +7,8 @@ import (
 	"os"
 	"regexp"
 
+	"go.opentelemetry.io/otel"
+	"go.opentelemetry.io/otel/propagation"
 	"go.opentelemetry.io/otel/trace"
 )
 
@@ -47,6 +49,8 @@ func (h *DefaultHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	req.Header.Set("Content-Type", "application/json")
+	carrier := propagation.HeaderCarrier(req.Header)
+	otel.GetTextMapPropagator().Inject(ctx, carrier)
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
